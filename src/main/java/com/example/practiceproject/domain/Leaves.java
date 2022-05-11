@@ -18,6 +18,14 @@ public class Leaves implements Serializable {
     @ManyToOne
     private Employee employee;
 
+    public Leaves(Integer id, Integer numberOfLeaves, Date startDate, Date endDate, Employee employee) {
+        this.id = id;
+        this.numberOfLeaves = numberOfLeaves;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.employee = employee;
+    }
+
     public Leaves() {
 
     }

@@ -1,6 +1,6 @@
 package com.example.practiceproject.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.practiceproject.repo.EmployeeRepo;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -19,19 +19,16 @@ public class Employee implements Serializable {
     private String empName;
 
     private Date joinDate;
-    private Integer salary;
 
     @ManyToOne
     private Department department;
 
     public Employee(){
-
     }
 
-    public Employee(String empName, Date joinDate, Integer salary, Department department) {
+    public Employee(String empName, Date joinDate, Department department) {
         this.empName = empName;
         this.joinDate = joinDate;
-        this.salary = salary;
         this.department = department;
     }
 
@@ -57,14 +54,6 @@ public class Employee implements Serializable {
 
     public void setJoinDate(Date joinDate) {
         this.joinDate = joinDate;
-    }
-
-    public Integer getSalary() {
-        return salary;
-    }
-
-    public void setSalary(Integer salary) {
-        this.salary = salary;
     }
 
     public Department getDepartment() {

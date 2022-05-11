@@ -3,9 +3,8 @@ package com.example.practiceproject.web;
 import com.example.practiceproject.domain.Employee;
 import com.example.practiceproject.exceptions.UserNotFoundException;
 import com.example.practiceproject.repo.EmployeeRepo;
-import com.example.practiceproject.services.EmployeeDTO;
-import com.example.practiceproject.services.EmployeeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.practiceproject.services.impl.EmployeeDTO;
+import com.example.practiceproject.services.inter.EmployeeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -17,10 +16,14 @@ import java.util.Optional;
 @RestController
 public class EmployeeResponse {
 
-    @Autowired
-    private EmployeeRepo employeeRepo;
-    @Autowired
-    private EmployeeService employeeService;
+    private final EmployeeRepo employeeRepo;
+    private final EmployeeService employeeService;
+
+    public EmployeeResponse(EmployeeRepo employeeRepo, EmployeeService employeeService) {
+        this.employeeRepo = employeeRepo;
+        this.employeeService = employeeService;
+    }
+
 
     @GetMapping("/Employees")
     public List<Employee> retrieveAllEmployee(){
@@ -55,7 +58,10 @@ public class EmployeeResponse {
 
     @GetMapping("/Department/Employees")
     public List<EmployeeDTO> getEmployeesByDepartment(@RequestParam String dept){
-        List<EmployeeDTO> employeesByDepartment = employeeService.getAllEmployee(dept);
+
+        List<EmployeeDTO> employeesByDepartment = employeeService.findByDepartmentName(dept);
+
+        //List<EmployeeDTO> employeeDTOList = employeeService.ConvertEntityToDTO(employeesByDepartment);
 
         if (employeesByDepartment.isEmpty()){
             throw new UserNotFoundException("Department: "+dept);

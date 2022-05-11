@@ -33,8 +33,9 @@ public class PracticeProjectApplication {
     @Bean
     CommandLineRunner commandLineRunner(EmployeeRepo employeeRepo, DepartmentRepo departmentRepo){
         return args -> {
-            employeeRepo.save(new Employee("Ali",new Date(2019,12,2),90000, departmentRepo.findById("Sales").get()));
+            employeeRepo.save(new Employee("Ali",new Date(2019,12,2), departmentRepo.findById("Sales").get()));
+            employeeRepo.save(new Employee("Hassan",new Date(2016,11,2), departmentRepo.findById("IT").get()));
+            employeeRepo.save(new Employee("Aslam",new Date(2021,12,2), departmentRepo.findById("Sales").get()));
         };
     }
-    
 }

@@ -16,9 +16,10 @@ public class MedicalAllowance implements Serializable {
 
     public MedicalAllowance(){}
 
-    public MedicalAllowance(Integer id, Integer amount) {
+    public MedicalAllowance(Integer id, Integer amount, Employee employee) {
         this.id = id;
         this.amount = amount;
+        this.employee = employee;
     }
 
     public Integer getId() {

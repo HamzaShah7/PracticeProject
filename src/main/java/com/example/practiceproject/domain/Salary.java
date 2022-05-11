@@ -12,6 +12,7 @@ public class Salary implements Serializable {
     @Id
     private Integer id;
     private Date CreatedDate;
+    private Integer salary;
 
     @ManyToOne()
     private Employee employee;
@@ -20,9 +21,11 @@ public class Salary implements Serializable {
 
     }
 
-    public Salary(Integer id, Date createdDate) {
+    public Salary(Integer id, Date createdDate, Integer salary, Employee employee) {
         this.id = id;
         CreatedDate = createdDate;
+        this.salary = salary;
+        this.employee = employee;
     }
 
     public Integer getId() {
@@ -39,5 +42,21 @@ public class Salary implements Serializable {
 
     public void setCreatedDate(Date createdDate) {
         CreatedDate = createdDate;
+    }
+
+    public Integer getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Integer salary) {
+        this.salary = salary;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
